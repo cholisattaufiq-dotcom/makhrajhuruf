@@ -1,0 +1,6 @@
+{
+  "name": "Belajar Makharijul Huruf",
+  "description": "Aplikasi edukasi interaktif makharijul huruf hijaiyah untuk pemula dengan visualisasi 5 makhraj utama, audio, dan latihan kuis interaktif.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
