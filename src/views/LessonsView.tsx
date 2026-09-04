@@ -24,6 +24,7 @@ export const LessonsView: React.FC<LessonsViewProps> = ({
     MAKHARIJ_CATEGORIES[0];
 
   const [activeSubcategoryIdx, setActiveSubcategoryIdx] = useState<number | null>(null);
+  const [visualType, setVisualType] = useState<'diagram' | 'photo'>('diagram');
 
   // Letters belonging to this category
   const categoryLetters = ALL_HURUF_DATA.filter(
@@ -127,36 +128,62 @@ export const LessonsView: React.FC<LessonsViewProps> = ({
             <div className="flex items-center justify-between px-1">
               <span className="text-xs font-bold text-stone-700 dark:text-stone-300 flex items-center gap-1.5">
                 <ImageIcon size={14} className="text-emerald-600" />
-                {currentCategory.id === 'lisan' && 'Ilustrasi Anatomi Lidah (اللسان)'}
-                {currentCategory.id === 'halqi' && 'Ilustrasi Tenggorokan 3 Tingkat (الحلق)'}
-                {currentCategory.id === 'syafatain' && 'Ilustrasi Dua Bibir & Gigi (الشفتان)'}
-                {currentCategory.id === 'khaisyum' && 'Ilustrasi Rongga Hidung (الخيشوم)'}
-                {currentCategory.id === 'jauf' && 'Ilustrasi Rongga Terbuka Al-Jauf (الجوف)'}
+                <span>Visualisasi Titik Makhraj</span>
               </span>
-              <span className="text-[10px] font-semibold text-emerald-700 dark:text-emerald-400 px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950">
-                Standar Buku Tajwid
-              </span>
-            </div>
-
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-xs bg-white dark:bg-stone-900 group">
-              <img
-                src={
-                  currentCategory.id === 'lisan'
-                    ? TAJWID_IMAGES.lisanTongue
-                    : currentCategory.id === 'halqi'
-                    ? TAJWID_IMAGES.halqiThroat
-                    : currentCategory.id === 'syafatain'
-                    ? TAJWID_IMAGES.syafatainLips
-                    : TAJWID_IMAGES.fullAnatomy
-                }
-                alt={`Ilustrasi Anatomi ${currentCategory.nama}`}
-                className="w-full h-full object-contain filter contrast-105"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute bottom-2 right-2 bg-stone-900/80 backdrop-blur-xs text-white text-[10px] px-2.5 py-1 rounded-lg">
-                At-Tajwid Al-Musawwar
+              <div className="inline-flex p-0.5 bg-stone-200/70 dark:bg-stone-800 rounded-lg text-[10px]">
+                <button
+                  id="toggle-visual-diagram"
+                  onClick={() => setVisualType('diagram')}
+                  className={`px-2 py-0.5 rounded-md font-bold transition-all ${
+                    visualType === 'diagram'
+                      ? 'bg-white dark:bg-stone-700 text-stone-900 dark:text-white shadow-xs'
+                      : 'text-stone-500 hover:text-stone-800 dark:hover:text-stone-200'
+                  }`}
+                >
+                  Diagram Buku
+                </button>
+                <button
+                  id="toggle-visual-photo"
+                  onClick={() => setVisualType('photo')}
+                  className={`px-2 py-0.5 rounded-md font-bold transition-all ${
+                    visualType === 'photo'
+                      ? 'bg-white dark:bg-stone-700 text-stone-900 dark:text-white shadow-xs'
+                      : 'text-stone-500 hover:text-stone-800 dark:hover:text-stone-200'
+                  }`}
+                >
+                  Ilustrasi Klasik
+                </button>
               </div>
             </div>
+
+            {visualType === 'diagram' ? (
+              <AnatomyDiagram
+                activeCategoryId={currentCategory.id}
+                interactive={true}
+                showLabels={true}
+                className="w-full"
+              />
+            ) : (
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-xs bg-white dark:bg-stone-900 group">
+                <img
+                  src={
+                    currentCategory.id === 'lisan'
+                      ? TAJWID_IMAGES.lisanTongue
+                      : currentCategory.id === 'halqi'
+                      ? TAJWID_IMAGES.halqiThroat
+                      : currentCategory.id === 'syafatain'
+                      ? TAJWID_IMAGES.syafatainLips
+                      : TAJWID_IMAGES.fullAnatomy
+                  }
+                  alt={`Ilustrasi Anatomi ${currentCategory.nama}`}
+                  className="w-full h-full object-contain filter contrast-105"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute bottom-2 right-2 bg-stone-900/80 backdrop-blur-xs text-white text-[10px] px-2.5 py-1 rounded-lg">
+                  At-Tajwid Al-Musawwar
+                </div>
+              </div>
+            )}
 
             <p className="text-[11px] text-stone-500 dark:text-stone-400 text-center leading-relaxed">
               {currentCategory.id === 'lisan' && 'Memperlihatkan titik kontak pangkal, tengah, tepi geraham, dan ujung lidah dengan gusi serta gigi seri.'}

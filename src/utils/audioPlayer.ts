@@ -71,10 +71,11 @@ class MakharijAudioPlayer {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
 
-      // Utterance text: read with example or name + letter
+      // Utterance text: read with example or name + letter (clean tatweel for TTS)
+      const cleanHuruf = huruf.huruf.replace(/ـ/g, '');
       const textToSpeak = huruf.kategoriId === 'jauf'
-        ? `${huruf.huruf} مَدْ`
-        : huruf.huruf;
+        ? `${cleanHuruf} مَدْ`
+        : cleanHuruf;
 
       const utterance = new SpeechSynthesisUtterance(textToSpeak);
       utterance.lang = 'ar-SA';

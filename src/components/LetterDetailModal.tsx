@@ -111,10 +111,11 @@ export const LetterDetailModal: React.FC<LetterDetailModalProps> = ({
               </div>
               <div className="flex justify-center p-2 bg-stone-50 dark:bg-stone-950/60 rounded-2xl border border-stone-200 dark:border-stone-800">
                 <AnatomyDiagram
+                  activeCategoryId={huruf.kategoriId}
                   activeZoneId={huruf.makhrajZoneId}
-                  interactive={true}
-                  showLabels={false}
-                  className="w-full max-w-[380px]"
+                  interactive={false}
+                  showLabels={true}
+                  className="w-full max-w-[460px]"
                 />
               </div>
             </div>

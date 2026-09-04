@@ -26,14 +26,14 @@ export const MAKHARIJ_CATEGORIES: CategoryInfo[] = [
     namaArab: 'الحَلْق',
     arti: 'Tenggorokan',
     deskripsi: 'Saluran tenggorokan yang terbagi menjadi 3 bagian utama: pangkal, tengah, dan ujung tenggorokan.',
-    hurufRingkas: ['ء', 'ه', 'ع', 'ح', 'غ', 'خ'],
+    hurufRingkas: ['ء', 'هـ', 'ع', 'ح', 'غ', 'خ'],
     catatanKhusus: 'Huruf-huruf ini juga dikenal sebagai huruf Izhar Halqi dalam hukum nun mati dan tanwin.',
     zonaAnatomi: ['halqi-bottom', 'halqi-middle', 'halqi-top'],
     subkategoriList: [
       {
         nama: 'Pangkal Tenggorokan (Aqshal Halqi)',
         namaArab: 'أَقْصَى الحَلْق',
-        huruf: ['ء', 'ه'],
+        huruf: ['ء', 'هـ'],
         deskripsi: 'Bagian tenggorokan paling dalam / bawah yang dekat dengan pita suara dan dada.',
         zonaId: 'halqi-bottom',
       },
@@ -233,7 +233,7 @@ export const ALL_HURUF_DATA: HurufItem[] = [
   },
   {
     id: 'ha-besar',
-    huruf: 'ه',
+    huruf: 'هـ',
     nama: 'Ha (Besar)',
     namaArab: 'هَاء',
     kategori: 'Halqi',
